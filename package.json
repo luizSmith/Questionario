@@ -1,0 +1,19 @@
+{
+  "name": "questionario",
+  "version": "1.0.0",
+  "description": "Plataforma de perguntas e respostas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luizSmith/Questionario.git"
+  },
+  "author": "Luiz Victor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luizSmith/Questionario/issues"
+  },
+  "homepage": "https://github.com/luizSmith/Questionario#readme"
+}
