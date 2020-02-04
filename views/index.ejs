@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Rodando de boas</h1>
+        <p>Meu nome é <%= nome %></p>
+        <p>Tenho <%= idade %> anos de idade</p>
+
+        <div>
+            <% lista.forEach(function(lista,i) {%>
+                <p><%= i %> - <%= lista.pessoa %></p>
+            <%});%>
+        </div>
+    </body>
+</html>
