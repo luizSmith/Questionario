@@ -24,6 +24,12 @@ app.get("/:nome/:idade",(req, resp) => {
     });
 });
 
+app.get("/perguntar",(req,resp) => {
+    resp.render("perguntar",{
+
+    });
+});
+
 app.listen(8080,()=>{
     console.log("Servidor rodando");
 });
