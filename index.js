@@ -40,7 +40,12 @@ app.use(bodyParse.json());
 //Rotas
 app.get("/",(req,resp) => {
     //raw true faz o findAll fazer uma busca limpa
-    Pergunta.findAll({raw: true}).then(perguntas => { // SELECT *
+    Pergunta.findAll({
+        raw: true,
+        order:[
+            ['id', 'desc'] //order by
+        ]
+    }).then(perguntas => { // SELECT *
         resp.render("index",{
             perguntas: perguntas
         });
@@ -65,6 +70,22 @@ app.post("/salvarpergunta",(req,resp) => {
         resp.redirect("/"); //redireciona
     })
 });
+
+app.get("/pergunta/:id", (req,resp) => {
+    var id = req.params.id;
+
+    Pergunta.findOne({
+        where: {id: id}
+    }).then(pergunta => {
+        if (pergunta != undefined) {
+            resp.render("pergunta",{
+                pergunta: pergunta
+            });
+        } else {
+            resp.redirect("/");
+        }
+    })
+})
 
 app.listen(8080,() => {
     console.log("Servidor rodando");
