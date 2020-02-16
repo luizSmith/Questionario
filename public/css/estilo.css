@@ -5,3 +5,8 @@ body{
 #formulario-pergunta{
     margin-top: 5vh;
 }
+
+nav h2 {
+    text-align: left;
+    color: white;
+}
