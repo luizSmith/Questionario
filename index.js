@@ -10,6 +10,7 @@ const connection = require("./database/database");
 
 // importando model
 const Pergunta = require("./database/Pergunta");
+const Resposta = require("./database/Resposta");
 
 //chamando conexão
 connection
@@ -53,6 +54,7 @@ app.get("/",(req,resp) => {
     
 })
 
+//Pergunta
 app.get("/perguntar",(req,resp) => {
     resp.render("perguntar",{
 
@@ -78,12 +80,38 @@ app.get("/pergunta/:id", (req,resp) => {
         where: {id: id}
     }).then(pergunta => {
         if (pergunta != undefined) {
-            resp.render("pergunta",{
-                pergunta: pergunta
+
+            Resposta.findAll({
+                where: {pergunta_id: pergunta.id},
+                raw: true,
+                order: [
+                    ['id', 'desc']
+                ]
+            }).then(respostas => {
+
+                resp.render("pergunta",{
+                    pergunta: pergunta,
+                    respostas: respostas
+                });
+
             });
+
         } else {
             resp.redirect("/");
         }
+    })
+})
+
+//Resposta
+app.post("/salvaresposta",(req,resp) => {
+    var resposta = req.body.resposta;
+    var pergunta = req.body.pergunta;
+
+    Resposta.create({
+        corpo: resposta,
+        pergunta_id: pergunta
+    }).then(() => {
+        resp.redirect("/pergunta/" + pergunta);
     })
 })
 
